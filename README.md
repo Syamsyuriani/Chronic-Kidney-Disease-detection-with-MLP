@@ -72,7 +72,7 @@ X = dt.drop(columns=['age', 'su', 'pc', 'pcc', 'ba', 'sod', 'pot', 'appet', 'pe'
 The smallest Cp value is achieved by a combination of 14 features, including bp, sg, al, bgr, bu, sc, hemo, pcv, wc, rc, htn, dm, cad, and ane, as shown in the figure above.
 
 ## Data Standardization
-After performing feature selection, the next step is to standardize the data so that the model can learn faster and improve model performance. Data standardization is done by making the numerical features normally distributed with a mean of 0 and a standard deviation of 1.
+After performing feature selection, the next step is to standardize the data so that the model can learn faster and improve model performance. Data standardization is done by making the numerical features normally distributed with mean 0 and standard deviation 1.
 ```python
 #Create new variables to indicate numeric and category features
 cat_feat = ['al', 'htn', 'dm', 'cad', 'ane']
