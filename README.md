@@ -92,10 +92,13 @@ The next step is to split the data into train data and test data. Train data is 
 X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2, random_state = 42)
 ```
 ## Model Building
-To build the model, we use cross validation with 10-folds to estimate the model performance. We also perform hyperparameter tuning with grid search technique to find the best combination of hyperparameters for optimal performance. Candidate hyperparameter values that must be optimized are shown in the following table
+To build the model, we use cross validation with 10-folds to estimate the model performance. We also perform hyperparameter tuning with grid search technique to find the best combination of hyperparameters for optimal performance. Candidate hyperparameter values that must be optimized are shown in the following table.
+
 ![image](https://user-images.githubusercontent.com/72261134/151433149-d17ee482-2f36-4c4c-88d6-688a2cdfe878.png)
 
+```python
 
+```
 
 
 
