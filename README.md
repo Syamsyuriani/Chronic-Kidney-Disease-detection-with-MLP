@@ -17,7 +17,7 @@ dt = pd.read_csv('https://raw.githubusercontent.com/Syamsyuriani/Handling-missin
 ![image](https://user-images.githubusercontent.com/72261134/151430339-feea6c86-48c0-4893-b5b9-3fcbae5835ae.png)
 
 ## Feature Selection
-After overcoming the missing value, we perform feature selection using the backward selection technique by paying attention to the [Cp value](https://booksvooks.com/nonscrolablepdf/an-introduction-to-statistical-learning-with-applications-in-r-pdf.html). The selected feature is a combination of features that produces the smallest Cp value.
+After handling the missing value, we perform feature selection using the backward selection technique by paying attention to the [Cp value](https://booksvooks.com/nonscrolablepdf/an-introduction-to-statistical-learning-with-applications-in-r-pdf.html). The selected feature is a combination of features that produces the smallest Cp value.
 ```python
 Y = dt.classification
 X = dt.drop(columns = ['classification'], axis = 1)
@@ -92,16 +92,47 @@ The next step is to split the data into train data and test data. Train data is 
 X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2, random_state = 42)
 ```
 ## Model Building
-To build the model, we use cross validation with 10-folds to estimate the model performance. We also perform hyperparameter tuning with grid search technique to find the best combination of hyperparameters for optimal performance. Candidate hyperparameter values that must be optimized are shown in the following table.
+To build the model, we use cross validation with 10-folds to estimate the model performance.
+We also perform hyperparameter tuning with grid search technique to find the best combination of hyperparameters for optimal performance.
+Candidate hyperparameter values that must be optimized are shown in the following table.
+We train the model using epoch 10, batch size 32, and SGD learning method.
 
 ![image](https://user-images.githubusercontent.com/72261134/151433149-d17ee482-2f36-4c4c-88d6-688a2cdfe878.png)
 
 ```python
+random.seed(69)
+def create_model(learn_rate, hidden_layers, neurons):
+  model = Sequential()
+  model.add(Dense(14))
+  for i in range(hidden_layers):
+    model.add(Dense(neurons, activation='relu'))
+  model.add(Dense(1, activation='sigmoid'))
+  optimizer = SGD(learning_rate=learn_rate)
+  model.compile(optimizer = optimizer, loss='binary_crossentropy', metrics=['accuracy'])
+  return model
+ 
+model = KerasClassifier(build_fn=create_model, epochs=10, batch_size=32, verbose=0)
 
+param_grid = {"hidden_layers": [1,2,3,4,5], "neurons": [1,2,3,5,6,7,8,9,10,11,12,13,14], "learn_rate": [0.0001, 0.001, 0.01, 0.1, 1]}
+grid = GridSearchCV(estimator=model, param_grid=param_grid, n_jobs=-1, cv=10)
+grid_result = grid.fit(X_train, y_train)
+ 
+print("Best accuracy: %f using %s" % (grid_result.best_score_, grid_result.best_params_))
+means = grid_result.cv_results_['mean_test_score']
+stds = grid_result.cv_results_['std_test_score']
+params = grid_result.cv_results_['params']
+for mean, stdev, param in zip(means, stds, params):
+    print("Accuracy: %f (%f) with: %r" % (mean, stdev, param))
 ```
 
+## Model Evaluation
+The next step is evaluate the model that has been buit. We We focus on three evaluation criteria: accuracy, precision, and recall.
 
-
-
+```python
+y_pred = grid_result.predict(X_test)
+print('Accuracy:',metrics.accuracy_score(y_pred,y_test))
+print('Precision:',metrics.precision_score(y_pred,y_test))
+print('Recall:',metrics.recall_score(y_pred,y_test))
+```
 
 
