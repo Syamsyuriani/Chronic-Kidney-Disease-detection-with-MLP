@@ -126,7 +126,7 @@ for mean, stdev, param in zip(means, stds, params):
 ```
 
 ## Model Evaluation
-The next step is evaluate the model that has been buit. We We focus on three evaluation criteria: accuracy, precision, and recall.
+The last step is to evaluate the model that has been buit. We We focus on three evaluation criteria: accuracy, precision, and recall.
 
 ```python
 y_pred = grid_result.predict(X_test)
@@ -134,5 +134,9 @@ print('Accuracy:',metrics.accuracy_score(y_pred,y_test))
 print('Precision:',metrics.precision_score(y_pred,y_test))
 print('Recall:',metrics.recall_score(y_pred,y_test))
 ```
-
-
+After 10 repetitions, the average performance of the model is as follows.
+```
+Accuracy: 0.9845070422535211
+Precision: 0.9881294944391446
+Recall: 0.9852268142058274
+```
