@@ -17,7 +17,7 @@ dt = pd.read_csv('https://raw.githubusercontent.com/Syamsyuriani/Handling-missin
 ![image](https://user-images.githubusercontent.com/72261134/151430339-feea6c86-48c0-4893-b5b9-3fcbae5835ae.png)
 
 ## Feature Selection
-After overcoming the missing value, we perform feature selection using the backward selection technique by paying attention to the Cp value. The selected feature is a combination of features that produces the smallest Cp value.
+After overcoming the missing value, we perform feature selection using the backward selection technique by paying attention to the [Cp value](https://booksvooks.com/nonscrolablepdf/an-introduction-to-statistical-learning-with-applications-in-r-pdf.html). The selected feature is a combination of features that produces the smallest Cp value.
 ```python
 Y = dt.classification
 X = dt.drop(columns = ['classification'], axis = 1)
@@ -92,7 +92,8 @@ The next step is to split the data into train data and test data. Train data is 
 X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2, random_state = 42)
 ```
 ## Model Building
-
+To build the model, we use cross validation with 10-folds to estimate the model performance. We also perform hyperparameter tuning with grid search technique to find the best combination of hyperparameters for optimal performance. Candidate hyperparameter values that must be optimized are shown in the following table
+![image](https://user-images.githubusercontent.com/72261134/151433149-d17ee482-2f36-4c4c-88d6-688a2cdfe878.png)
 
 
 
