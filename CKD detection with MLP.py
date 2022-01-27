@@ -82,10 +82,10 @@ X_cat = X[cat_feat]
 
 #Numeric features standardization
 scaler = StandardScaler()
-scaler.fit(X_numerik)
-X_numerik = scaler.transform(X_numerik)
+scaler.fit(X_num)
+X_num = scaler.transform(X_num)
 
-X = pd.concat([X_numerik, X_kategorik], axis=1)
+X = pd.concat([X_num, X_cat], axis=1)
 X.rename(columns=({ 0: 'bp', 1: 'sg', 2: 'bgr', 3: 'bu', 4: 'sc', 5: 'hemo', 6: 'pcv', 7: 'wc', 8: 'rc'}),inplace=True)
 
 #one hot encoding on class features
