@@ -134,7 +134,7 @@ print('Accuracy:',metrics.accuracy_score(y_pred,y_test))
 print('Precision:',metrics.precision_score(y_pred,y_test))
 print('Recall:',metrics.recall_score(y_pred,y_test))
 ```
-After 10 repetitions, the average performance of the model is as follows.
+After 10 repetitions, the average performance of the model as follows.
 ```
 Accuracy: 0.9845070422535211
 Precision: 0.9881294944391446
