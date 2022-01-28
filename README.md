@@ -10,7 +10,7 @@ Because there are no symptoms in early-stage CKD, testing is the only way to det
 We can utilize machine learning to assist clinicians in detecting CKD fast for big volumes of data. We employ a multilayer perceptron (MLP) in our work to diagnose CKD early. This work's details can be found at this [URL](https://github.com/Syamsyuriani/Chronic-Kidney-Disease-detection-with-MLP/blob/main/Mathematical-Modelling-of-Chronic-Kidney-Disease-with-MLP.pdf), and the source code at this [URL](https://github.com/Syamsyuriani/Chronic-Kidney-Disease-detection-with-MLP/blob/main/CKD%20detection%20with%20MLP.py)
 
 ## About the Data
-We use data from the [UCI repository](https://archive.ics.uci.edu/ml/datasets/chronic_kidney_disease). The data has a missing value so that the missing value is handled first. The process handling missing values in this data can be seen in this [source](https://github.com/Syamsyuriani/Handling-missing-values-in-the-CKD-dataset).
+We use data from the [UCI repository](https://archive.ics.uci.edu/ml/datasets/chronic_kidney_disease). This data comes from the Apollo Hospital in India. There are 25 features in this data, including the categorization class ckd or not ckd. This data is from 400 patients with early stage CKD, 250 of those has CKD and 150 not CKD. The data has a missing value so that the missing value is handled first. The process handling missing values in this data can be seen in this [source](https://github.com/Syamsyuriani/Handling-missing-values-in-the-CKD-dataset).
 ```python
 dt = pd.read_csv('https://raw.githubusercontent.com/Syamsyuriani/Handling-missing-values-in-the-CKD-dataset/main/Kidney_disease(Processed).csv')
 ```
